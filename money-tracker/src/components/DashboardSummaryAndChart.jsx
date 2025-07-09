@@ -73,21 +73,23 @@ const DashboardSummaryAndChart = () => {
             <option key={month} value={month}>{month}</option>
           ))}
         </select>
-        <button
-          className={`ml-4 px-3 py-1 rounded ${viewMode === "day" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-          onClick={() => setViewMode("day")}
-        >
-          By Day
-        </button>
-        <button
-          className={`px-3 py-1 rounded ${viewMode === "month" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-          onClick={() => setViewMode("month")}
-        >
-          By Month
-        </button>
+        <div className="flex gap-2 mt-2 sm:mt-0">
+          <button
+            className={`px-3 py-1 rounded ${viewMode === "day" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+            onClick={() => setViewMode("day")}
+          >
+            By Day
+          </button>
+          <button
+            className={`px-3 py-1 rounded ${viewMode === "month" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+            onClick={() => setViewMode("month")}
+          >
+            By Month
+          </button>
+        </div>
       </div>
-      <div className="w-full h-64 mb-6">
-        <ResponsiveContainer>
+      <div className="w-full h-56 sm:h-64 mb-6 max-w-full">
+        <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
@@ -97,19 +99,19 @@ const DashboardSummaryAndChart = () => {
             <Line type="monotone" dataKey="value" name="Expenses" stroke="#ff4d4f" strokeWidth={2} dot={{ r: 4 }} />
           </LineChart>
         </ResponsiveContainer>
-      </div>  
-      <div className="flex gap-4 mb-6">
-        <div className="bg-green-100 text-green-800 p-4 rounded w-1/3 text-center">
+      </div>
+      <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="bg-green-100 text-green-800 p-4 rounded text-center flex-1">
           <div className="font-bold text-lg">Total Balance</div>
-          <div className="text-2xl">₹{totalBalance}</div>
+          <div className="text-xl sm:text-2xl">₹{totalBalance}</div>
         </div>
-        <div className="bg-blue-100 text-blue-800 p-4 rounded w-1/3 text-center">
+        <div className="bg-blue-100 text-blue-800 p-4 rounded text-center flex-1">
           <div className="font-bold text-lg">Total Income</div>
-          <div className="text-2xl">₹{totalIncome}</div>
+          <div className="text-xl sm:text-2xl">₹{totalIncome}</div>
         </div>
-        <div className="bg-red-100 text-red-800 p-4 rounded w-1/3 text-center">
+        <div className="bg-red-100 text-red-800 p-4 rounded text-center flex-1">
           <div className="font-bold text-lg">Total Expenses</div>
-          <div className="text-2xl">₹{totalExpense}</div>
+          <div className="text-xl sm:text-2xl">₹{totalExpense}</div>
         </div>
       </div>
     </div>
